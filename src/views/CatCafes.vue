@@ -23,15 +23,20 @@ export default {
     }
   },
   created() {
-    this.fetchCafes()
+    const searchQuery = this.$route.query
+    this.fetchCafes(searchQuery)
+  },
+  beforeRouteUpdate (to, from, next) {
+    const searchQuery = to.query
+    this.fetchCafes(searchQuery)
+    next()
   },
   methods: {
-    async fetchCafes() {
+    async fetchCafes( searchQuery ) {
       try {
-        const {data, status, statusText} = await cafesAPI.getCafes()
+        const {data, status, statusText} = await cafesAPI.getCafes({ search: searchQuery })
 
         this.cafes=data.cafes
-        console.log('data',data)
         console.log('status',status)
         console.log('statusText',statusText)
       } catch(error) {
