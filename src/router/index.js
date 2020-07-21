@@ -16,6 +16,11 @@ const routes = [
     component: CatCafes
   },
   {
+    path: '/catcafes/:id',
+    name: 'cat-cafe',
+    component: () => import('../views/CatCafe.vue')
+  },
+  {
     path: '*',
     name: 'not-found',
     component: NotFound
