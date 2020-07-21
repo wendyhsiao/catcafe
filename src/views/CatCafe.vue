@@ -1,14 +1,19 @@
 <template>
   <div class="container py-5">
     <div>
+      <CafeDetail :cafe="cafe"/>
     </div>
   </div>
 </template>
 
 <script>
+import CafeDetail from '../components/CafeDetail.vue'
 import cafesAPI from '../apis/cafes.js'
 
 export default {
+  components: {
+    CafeDetail,
+  },
   data() {
     return {
       cafe: {
