@@ -46,6 +46,13 @@ export default {
   methods: {
     async handleSubmit () {
       try {
+        if (!this.email || !this.password) {
+          Toast.fire({
+            icon: 'warning',
+            title: '電子郵件或密碼未填！'
+          })
+          return
+        }
         const {data} = await authorizationAPI.signIn({
           email: this.email,
           password: this.password
@@ -57,6 +64,11 @@ export default {
         localStorage.setItem('token', data.token)
         this.$router.push('/admin/catcafes')
       } catch (error) {
+        Toast.fire({
+          icon: 'warning',
+          title: '電子郵件或密碼錯誤！'
+        })
+        this.password = ''
         console.log('error', error)
       }
     }
