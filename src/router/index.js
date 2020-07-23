@@ -26,6 +26,11 @@ const routes = [
     component: () => import('../views/admin/AdminSignin.vue')
   },
   {
+    path: '/admin/catcafes',
+    name: 'admin-cat-cafes',
+    component: () => import('../views/admin/AdminCatCafe.vue')
+  },
+  {
     path: '*',
     name: 'not-found',
     component: NotFound
