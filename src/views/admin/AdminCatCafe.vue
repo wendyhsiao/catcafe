@@ -2,17 +2,22 @@
   <div class="container py-5">
     <div>
       <AdminCafeList :cafes="cafes"/>
+      <AdminCafePagination 
+        :pagination="pagination"
+        :current-page="currentPage"/>
     </div>
   </div>
 </template>
 
 <script>
 import AdminCafeList from '../../components/admin/AdminCafeList.vue'
+import AdminCafePagination from '../../components/admin/AdminCafePagination.vue'
 import AdminAPI from '../../apis/admin.js'
 
 export default {
   components: {
     AdminCafeList,
+    AdminCafePagination
   },
   data() {
     return {
