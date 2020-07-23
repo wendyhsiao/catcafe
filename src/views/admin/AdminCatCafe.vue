@@ -1,14 +1,19 @@
 <template>
   <div class="container py-5">
     <div>
+      <AdminCafeList :cafes="cafes"/>
     </div>
   </div>
 </template>
 
 <script>
+import AdminCafeList from '../../components/admin/AdminCafeList.vue'
 import AdminAPI from '../../apis/admin.js'
 
 export default {
+  components: {
+    AdminCafeList,
+  },
   data() {
     return {
       cafes: [],
@@ -25,6 +30,11 @@ export default {
   created() {
     const {search='', page=''} = this.$route.query
     this.fetchCafes({search, page})
+  },
+  beforeRouteUpdate (to, from, next) {
+    const {search='', page=''} = to.query
+    this.fetchCafes({search, page})
+    next()
   },
   methods: {
     async fetchCafes({search, page}) {
