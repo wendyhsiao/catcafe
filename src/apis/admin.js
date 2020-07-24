@@ -7,5 +7,10 @@ export default {
     return apiHelper.get(`/admin/cafes?${searchParams.toString()}`, {
       headers: { Authorization: `Bearer ${getToken()}` }
     })
+  },
+  getAdminCafe (cafeId) {
+    return apiHelper.get(`/admin/cafes/${cafeId}/edit`, {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    })
   }
 }

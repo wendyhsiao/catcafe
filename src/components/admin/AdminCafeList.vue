@@ -28,7 +28,9 @@
           <td>{{cafe.name}}</td>
           <td>{{cafe.address_city}}</td>
           <td class="w-50">
-            <a href="#" class="btn btn-secondary btn-sm">修改資訊</a>
+            <router-link 
+              :to="{name: 'admin-cat-cafe-edit', params: {id: cafe.id}}" 
+              class="btn btn-secondary btn-sm">修改資訊</router-link>
           </td>
         </tr>
       </tbody>
