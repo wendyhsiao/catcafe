@@ -1,13 +1,20 @@
 <template>
   <div class="container py-5">
+    <AdminCafeForm 
+      :initial-cafe="cafe"
+      :initial-images="images"/>
   </div>
 </template>
 
 <script>
 import AdminAPI from '../../apis/admin.js'
+import AdminCafeForm from '../../components/admin/AdminCafeForm.vue'
 
 
 export default {
+  components: {
+    AdminCafeForm
+  },
   data() {
     return {
       cafe: {
