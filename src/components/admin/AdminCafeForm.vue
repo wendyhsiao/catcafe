@@ -1,11 +1,12 @@
 <template>
   <div class="bg-white p-5">
-    <form>
+    <form @submit.prevent.stop="handleSubmit">
       <div class="form-group row">
         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
           <input 
             v-model="cafe.name"
+            name="name"
             type="text" class="form-control" id="inputName">
         </div>
       </div>
@@ -15,6 +16,7 @@
         <div class="col-sm-10">
           <input 
             v-model="cafe.tel"
+            name="tel"
             type="text" class="form-control" id="inputTel">
         </div>
       </div>
@@ -27,18 +29,21 @@
                 <label for="inputCity">City</label>
                 <input 
                   v-model="cafe.address_city"
+                  name="addressCity"
                   type="text" class="form-control" id="inputCity">
               </div>
               <div class="form-group col-md-3">
                 <label for="inputDistrict">District</label>
                 <input 
                   v-model="cafe.address_dist"
+                  name="addressDist"
                   type="text" class="form-control" id="inputDistrict">
               </div>
               <div class="form-group col-md-6">
                 <label for="inputAddress">Address</label>
                 <input 
                   v-model="cafe.address_other"
+                  name="addressOther"
                   type="text" class="form-control" id="inputAddress">
               </div>
             </div>
@@ -50,6 +55,7 @@
         <div class="col-sm-10">
           <input 
             v-model="cafe.opening_hour"
+            name="openingHour"
             type="text" class="form-control" id="inputOpeningHour">
         </div>
       </div>
@@ -59,6 +65,7 @@
         <div class="col-sm-10">
           <input 
             v-model="cafe.minimum_charge"
+            name="minimumCharge"
             type="text" class="form-control" id="inputMinimumCharge">
         </div>
       </div>
@@ -68,6 +75,7 @@
         <div class="col-sm-10">
           <input 
             v-model="cafe.facebook"
+            name="facebook"
             type="text" class="form-control" id="inputFacebook">
         </div>
       </div>
@@ -77,6 +85,7 @@
         <div class="col-sm-10">
           <input 
             v-model="cafe.instagram"
+            name="instagram"
             type="text" class="form-control" id="inputInstagram">
         </div>
       </div>
@@ -86,7 +95,7 @@
         <div class="col-sm-10">
           <textarea 
             v-model="cafe.consumption_patterns"
-            name="consumption_patterns" cols="30" rows="5" class="form-control" id="inputConsumptionPatterns"></textarea>
+            name="consumptionPatterns" cols="30" rows="5" class="form-control" id="inputConsumptionPatterns"></textarea>
         </div>
       </div>
       
@@ -143,6 +152,9 @@
 
       <div class="form-group row">
         <div class="col-sm-12 text-right">
+          <router-link 
+            class="btn btn-secondary mr-3"
+            :to="{name: 'admin-cat-cafes'}">Cancel</router-link>
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </div>
@@ -216,6 +228,15 @@ export default {
         })
       }
     },
+    handleSubmit(event) {
+      const form = event.target
+      const formData = new FormData(form)
+      formData.set('image', '')
+      for (let i = 0; i < this.image_list.length; i++) {
+        formData.append('image', this.image_list[i] )
+      }
+      this.$emit('after-submit', formData)
+    }
   }
 }
 </script>
