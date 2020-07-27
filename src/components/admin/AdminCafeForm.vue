@@ -117,9 +117,25 @@
               :key="image.id"
               class="col-sm-3 mb-3">
               <img :src="image.url" class="w-100 border rounded">
+              <input type="text" name="imageId" :value="image.id" class="d-none">
             </div>
-            <div class="col-sm-3 mb-3">
-              <input type="submit" class="w-100 h-100 border rounded" value="+ Add Image">
+            <!-- 新增的照片 -->
+            <div 
+              v-for="(img, index) in preview_list"
+              :key="'a' + index" 
+              class="col-sm-3 mb-3">
+              <img :src="img.imageURL" class="w-100 border rounded">
+            </div>
+            <!-- 新增按鈕 -->
+            <div class="col-sm-3 mb-3 image-upload">
+              <label for="fileInput" class="w-100 border rounded text-center">+ Add Image</label>
+              <input 
+                id="fileInput"
+                type="file" 
+                name="image"
+                accept="image/*"
+                multiple="multiple"
+                @change="previewMultiImage">
             </div>
           </div>
         </div>
@@ -163,7 +179,9 @@ export default {
   data() {
     return {
       cafe: {...this.initialCafe},
-      images: []
+      images: [],
+      preview_list: [],
+      image_list: []
     }
   },
   watch: {
@@ -182,6 +200,39 @@ export default {
   },
   created() {
     this.images = this.initialImages
+  },
+  methods: {
+    previewMultiImage(e) {
+      const {files} = e.target
+      let index = 0
+      
+      if (files) {
+        files.forEach(file => {
+          this.preview_list.push({
+            imageURL: window.URL.createObjectURL(file)
+          })
+          this.image_list.push(files[index])
+          index ++
+        })
+      }
+    },
   }
 }
 </script>
+
+<style scoped>
+.image-upload {
+  position: relative;
+}
+.image-upload > label{
+  cursor: pointer;
+  height: 120px;
+  line-height: 120px;
+}
+.image-upload > input{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+</style>
