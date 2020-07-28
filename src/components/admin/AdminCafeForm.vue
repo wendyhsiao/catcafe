@@ -125,6 +125,10 @@
               v-for="image in images"
               :key="image.id"
               class="col-sm-3 mb-3">
+              <button 
+                @click.prevent.stop="deteleImage(image.id)"
+                class="btn btn-danger btn-sm"
+                type="button">Delete</button>
               <img :src="image.url" class="w-100 border rounded">
               <input type="text" name="imageId" :value="image.id" class="d-none">
             </div>
@@ -133,6 +137,10 @@
               v-for="(img, index) in preview_list"
               :key="'a' + index" 
               class="col-sm-3 mb-3">
+              <button 
+                @click.prevent.stop="detelePreviewImage(index)"
+                class="btn btn-danger btn-sm"
+                type="button">Delete</button>
               <img :src="img.imageURL" class="w-100 border rounded">
             </div>
             <!-- 新增按鈕 -->
@@ -232,14 +240,22 @@ export default {
       // 解決選擇相同檔案時，@change 無法運作的問題
       this.$refs.imageUploader.value = ''
     },
+    deteleImage(id) {
+      const newImagesList = this.images.filter(image => image.id !== id)
+      this.images = newImagesList
     },
-    handleSubmit(event) {
-      const form = event.target
+    detelePreviewImage(index) {
+      this.preview_list.splice(index, 1)
+      this.image_list.splice(index, 1)
+    },
+    handleSubmit(e) {
+      const form = e.target
       const formData = new FormData(form)
       formData.set('image', '')
       for (let i = 0; i < this.image_list.length; i++) {
         formData.append('image', this.image_list[i] )
       }
+
       this.$emit('after-submit', formData)
     }
   }
