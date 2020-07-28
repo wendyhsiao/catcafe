@@ -31,6 +31,11 @@ const routes = [
     component: () => import('../views/admin/AdminCatCafe.vue')
   },
   {
+    path: '/admin/catcafes/new',
+    name: 'admin-cat-cafes-new',
+    component: () => import('../views/admin/AdminCatCafeNew.vue')
+  },
+  {
     path: '/admin/catcafes/:id/edit',
     name: 'admin-cat-cafe-edit',
     component: () => import('../views/admin/AdminCatCafeEdit.vue')
