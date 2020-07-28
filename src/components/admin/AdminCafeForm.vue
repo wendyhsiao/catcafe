@@ -144,6 +144,7 @@
                 name="image"
                 accept="image/*"
                 multiple="multiple"
+                ref="imageUploader"
                 @change="previewMultiImage">
             </div>
           </div>
@@ -227,6 +228,10 @@ export default {
           index ++
         })
       }
+
+      // 解決選擇相同檔案時，@change 無法運作的問題
+      this.$refs.imageUploader.value = ''
+    },
     },
     handleSubmit(event) {
       const form = event.target
