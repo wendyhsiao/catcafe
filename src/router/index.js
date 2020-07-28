@@ -21,6 +21,21 @@ const routes = [
     component: () => import('../views/CatCafe.vue')
   },
   {
+    path: '/admin/catcafes/signin',
+    name: 'admin-signin',
+    component: () => import('../views/admin/AdminSignin.vue')
+  },
+  {
+    path: '/admin/catcafes',
+    name: 'admin-cat-cafes',
+    component: () => import('../views/admin/AdminCatCafe.vue')
+  },
+  {
+    path: '/admin/catcafes/:id/edit',
+    name: 'admin-cat-cafe-edit',
+    component: () => import('../views/admin/AdminCatCafeEdit.vue')
+  },
+  {
     path: '*',
     name: 'not-found',
     component: NotFound
