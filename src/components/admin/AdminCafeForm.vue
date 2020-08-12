@@ -2,7 +2,7 @@
   <div class="bg-white p-5">
     <form @submit.prevent.stop="handleSubmit">
       <div class="form-group row">
-        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+        <label for="inputName" class="col-sm-2 col-form-label">Name *</label>
         <div class="col-sm-10">
           <input 
             v-model="cafe.name"
@@ -22,7 +22,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="inputCity" class="col-sm-2 col-form-label">Address</label>
+        <label for="inputCity" class="col-sm-2 col-form-label">Address *</label>
         <div class="col-sm-10">
             <div class="form-row">
               <div class="form-group col-md-3">
@@ -51,7 +51,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="inputOpeningHour" class="col-sm-2 col-form-label">OpeningHour</label>
+        <label for="inputOpeningHour" class="col-sm-2 col-form-label">OpeningHour *</label>
         <div class="col-sm-10">
           <input 
             v-model="cafe.opening_hour"
@@ -118,13 +118,13 @@
       </div>
       <!-- Image -->
       <div class="form-group row">
-        <label for="Image" class="col-sm-2 col-form-label">Image</label>
+        <label for="Image" class="col-sm-2 col-form-label">Image *</label>
         <div class="col-sm-10">
           <div class="row">
             <div 
               v-for="image in images"
               :key="image.id"
-              class="col-sm-3 mb-3">
+              class="col-sm-3 mb-3 image-group">
               <button 
                 @click.prevent.stop="deteleImage(image.id)"
                 class="btn btn-danger btn-sm"
@@ -194,7 +194,7 @@ export default {
     },
     initialImages: {
       type: Array,
-      required: true
+      required: false
     }
   },
   data() {
@@ -276,5 +276,23 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+}
+.image-group {
+  position: relative;
+  height: 120px;
+  width: auto;
+}
+.image-group > button {
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+.image-group > img {
+  width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+  object-fit: contain;
+  background: lightgray;
 }
 </style>

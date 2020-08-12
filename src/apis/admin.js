@@ -17,5 +17,10 @@ export default {
     return apiHelper.put(`/admin/cafes/${cafeId}`, formData, {
       headers: { Authorization: `Bearer ${getToken()}` }
     })
+  },
+  postAdminCafe ({ formData }) {
+    return apiHelper.post('/admin/cafes', formData, {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    })
   }
 }
