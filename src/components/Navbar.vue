@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$router.push({ path: '/catcafes', query: { search: this.search }})
+      this.$router.push({ path: '/catcafes', query: { search: this.search }}).catch(()=>{})
     }
   }
 }
