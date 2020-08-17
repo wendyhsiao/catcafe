@@ -123,7 +123,7 @@ export default {
   width: 100%;
   max-height: 300px;
   object-fit: contain;
-  background: #f0f0f0;
+  background: #F7F5F3;
 }
 .thumbnails img {
   height: 80px;
@@ -132,6 +132,6 @@ export default {
 }
 .slick-prev:before,
 .slick-next:before {
-  color: #333;
+  color: #564739;
 }
 </style>

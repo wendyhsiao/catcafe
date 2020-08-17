@@ -32,7 +32,7 @@ export default {
   height: 0;
   padding-bottom: 75%;
   overflow: hidden;
-  background: #f0f0f0;
+  background: #F7F5F3;
   position: relative;
 }
 .card-img-top img {

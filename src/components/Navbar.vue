@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-light bg-white">
     <router-link class="navbar-brand" 
       :to="{name: 'cat-cafes'}">CatCafe</router-link>
     <form class="form-inline">
@@ -8,7 +8,7 @@
         class="form-control mr-sm-2" placeholder="Search">
       <button 
         @click.stop.prevent="handleSubmit"
-        class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        class="btn btn-outline-success btn-search my-2 my-sm-0" type="submit">Search</button>
     </form>
   </nav>
 </template>
