@@ -1,6 +1,7 @@
 <template>
   <div class="container py-5">
-    <div>
+    <Spinner v-if="isLoading"/>
+    <div v-else>
       <div class="card mb-3">
         <div class="row no-gutters">
           <div class="col-md-7 py-3 px-5">
@@ -44,6 +45,7 @@
 import CafeDetail from '../components/CafeDetail.vue'
 import CafeRule from '../components/CafeRule.vue'
 import cafesAPI from '../apis/cafes.js'
+import Spinner from '../components/Spinner.vue'
 
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
@@ -53,7 +55,8 @@ export default {
   components: {
     CafeDetail,
     CafeRule,
-    VueSlickCarousel
+    VueSlickCarousel,
+    Spinner
   },
   data() {
     return {
@@ -92,7 +95,8 @@ export default {
         slidesToScroll: 5,
         touchThreshold: 5,
         arrows: false
-      }
+      },
+      isLoading: true
     }
   },
   created() {
@@ -110,7 +114,10 @@ export default {
         const {data} = await cafesAPI.getCafe(id)
         this.cafe = data.cafe
         this.images = data.cafe.Images
+        
+        this.isLoading = false
       } catch (error) {
+        this.isLoading = false
         console.log('error', error)
       }
     }

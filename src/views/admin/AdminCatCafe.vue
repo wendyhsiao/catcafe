@@ -1,6 +1,7 @@
 <template>
   <div class="container py-5">
-    <div>
+    <Spinner v-if="isLoading"/>
+    <div v-else>
       <AdminCafeList :cafes="cafes"/>
       <AdminCafePagination 
         :pagination="pagination"
@@ -13,11 +14,13 @@
 import AdminCafeList from '../../components/admin/AdminCafeList.vue'
 import AdminCafePagination from '../../components/admin/AdminCafePagination.vue'
 import AdminAPI from '../../apis/admin.js'
+import Spinner from '../../components/Spinner.vue'
 
 export default {
   components: {
     AdminCafeList,
-    AdminCafePagination
+    AdminCafePagination,
+    Spinner
   },
   data() {
     return {
@@ -29,7 +32,8 @@ export default {
         totalPages: [],
         previousPage: -1,
         nextPage: -1
-      }
+      },
+      isLoading: true
     }
   },
   created() {
@@ -49,10 +53,13 @@ export default {
           page: page
         })
 
-        this.cafes=data.cafes.rows
-        this.currentPage=data.pagination.page
-        this.pagination=data.pagination
+        this.cafes = data.cafes.rows
+        this.currentPage = data.pagination.page
+        this.pagination = data.pagination
+        
+        this.isLoading = false
       } catch (error) {
+        this.isLoading = false
         console.log('error', error)
       }
     }
