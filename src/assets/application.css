@@ -36,3 +36,16 @@ h1, h5 {
   color: #FAC674;
   font-weight: bold;
 }
+
+.page-link{
+  color: #6c757d;
+}
+
+.page-item.active .page-link{
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.page-link > span{
+  line-height: 1.25;
+}
