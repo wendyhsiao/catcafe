@@ -2,7 +2,9 @@
   <div class="bg-white p-5">
     <form @submit.prevent.stop="handleSubmit">
       <div class="form-group row">
-        <label for="inputName" class="col-sm-2 col-form-label">Name *</label>
+        <label for="inputName" class="col-sm-2 col-form-label">Name 
+          <span>*</span>
+        </label>
         <div class="col-sm-10">
           <input 
             v-model="cafe.name"
@@ -22,7 +24,9 @@
       </div>
 
       <div class="form-group row">
-        <label for="inputCity" class="col-sm-2 col-form-label">Address *</label>
+        <label for="inputCity" class="col-sm-2 col-form-label">Address 
+          <span>*</span>
+        </label>
         <div class="col-sm-10">
             <div class="form-row">
               <div class="form-group col-md-3">
@@ -51,7 +55,9 @@
       </div>
 
       <div class="form-group row">
-        <label for="inputOpeningHour" class="col-sm-2 col-form-label">OpeningHour *</label>
+        <label for="inputOpeningHour" class="col-sm-2 col-form-label">OpeningHour 
+          <span>*</span>
+        </label>
         <div class="col-sm-10">
           <input 
             v-model="cafe.opening_hour"
@@ -118,7 +124,9 @@
       </div>
       <!-- Image -->
       <div class="form-group row">
-        <label for="Image" class="col-sm-2 col-form-label">Image *</label>
+        <label for="Image" class="col-sm-2 col-form-label">Image 
+          <span>*</span>
+        </label>
         <div class="col-sm-10">
           <div class="row">
             <div 
@@ -294,5 +302,8 @@ export default {
 	max-height: 100%;
   object-fit: contain;
   background: lightgray;
+}
+.col-form-label > span {
+  color: red;
 }
 </style>

@@ -1,13 +1,20 @@
 <template>
   <div>
-    <form class="form-inline">
-      <input type="search" name="search" 
-        v-model="search"
-        class="form-control mr-sm-2" placeholder="Search name">
-      <button 
-        @click.stop.prevent="handleSubmit"
-        class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="toolbar">
+      <form class="form-inline mb-3">
+        <input type="search" name="search" 
+          v-model="search"
+          class="form-control mr-sm-2" placeholder="Search name">
+        <button 
+          @click.stop.prevent="handleSubmit"
+          class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+      <router-link
+        class="btn btn-secondary mb-3"
+        :to="{name: 'admin-cat-cafes-new'}">Add cafe
+      </router-link>
+    </div>
 
     <table  class="table table-bordered table-hover">
       <thead class="thead-light">
@@ -58,3 +65,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.toolbar{
+  display: flex;
+  justify-content: space-between;
+}
+</style>

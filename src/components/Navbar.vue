@@ -1,14 +1,16 @@
 <template>
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-light bg-white">
     <router-link class="navbar-brand" 
-      :to="{name: 'cat-cafes'}">CatCafe</router-link>
+      :to="{name: 'cat-cafes'}">
+      <img src="../../public/catcafeLogo.png" class="logo">
+    </router-link>
     <form class="form-inline">
       <input type="search" name="search" 
         v-model="search"
         class="form-control mr-sm-2" placeholder="Search">
       <button 
         @click.stop.prevent="handleSubmit"
-        class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        class="btn btn-outline-success btn-search my-2 my-sm-0" type="submit">Search</button>
     </form>
   </nav>
 </template>
@@ -28,3 +30,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.logo {
+  height: 40px;
+}
+</style>

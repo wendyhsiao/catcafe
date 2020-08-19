@@ -1,6 +1,7 @@
 <template>
   <div class="container py-5">
-    <div class="row" v-if="!isLoading">
+    <Spinner v-if="isLoading"/>
+    <div class="row" v-else>
       <CafeCard 
         v-for="cafe in cafes"
         :key="cafe.id"
@@ -14,11 +15,13 @@
 import CafeCard from '../components/CafeCard.vue'
 import cafesAPI from '../apis/cafes.js'
 import InfiniteLoading from 'vue-infinite-loading'
+import Spinner from '../components/Spinner.vue'
 
 export default {
   components: {
     CafeCard,
-    InfiniteLoading
+    InfiniteLoading,
+    Spinner
   },
   data() {
     return {
