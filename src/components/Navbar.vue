@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar navbar-light bg-white">
     <router-link class="navbar-brand" 
-      :to="{name: 'cat-cafes'}">CatCafe</router-link>
+      :to="{name: 'cat-cafes'}">
+      <img src="../../public/catcafeLogo.png" class="logo">
+    </router-link>
     <form class="form-inline">
       <input type="search" name="search" 
         v-model="search"
@@ -28,3 +30,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.logo {
+  height: 40px;
+}
+</style>
