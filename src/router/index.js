@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CatCafes from '../views/CatCafes.vue'
 import NotFound from '../views/NotFound.vue'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -52,6 +53,11 @@ const router = new VueRouter({
   scrollBehavior () {
     return { x: 0, y: 0 }
   }
+})
+
+router.beforeEach((to, from, next) => {
+  store.dispatch('fetchCurrentUser')
+  next()
 })
 
 export default router

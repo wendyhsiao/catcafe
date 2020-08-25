@@ -22,5 +22,10 @@ export default {
     return apiHelper.post('/admin/cafes', formData, {
       headers: { Authorization: `Bearer ${getToken()}` }
     })
+  },
+  getCurrentUser () {
+    return apiHelper.get('/admin/get_current_user', {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    })
   }
 }
