@@ -62,6 +62,9 @@ export default {
         }
 
         localStorage.setItem('token', data.token)
+        // 資料傳到 Vuex
+        this.$store.commit('setCurrentUser', data.user)
+        
         this.$router.push('/admin/catcafes')
       } catch (error) {
         Toast.fire({
