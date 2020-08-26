@@ -11,25 +11,17 @@
       <button 
         @click.stop.prevent="handleSubmit"
         class="btn btn-outline-success btn-search my-2 my-sm-0" type="submit">Search</button>
-      <div v-if="isAuthenticated" class="mx-3">
-        {{currentUser.name}}
-      </div>
     </form>
   </nav>
 </template>
 
 <script>
-import {mapState} from 'vuex'
-
 export default {
   name: 'Navbar',
   data() {
     return {
       search: ''
     }
-  },
-  computed: {
-    ...mapState(['currentUser', 'isAuthenticated'])
   },
   methods: {
     handleSubmit() {

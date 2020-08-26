@@ -1,21 +1,26 @@
 <template>
-  <div class="container py-5">
-    <AdminCafeForm 
-      v-if="!isLoading"
-      :initial-cafe="cafe"
-      :initial-images="images"
-      @after-submit="handleAfterSubmit" />
+  <div>
+    <AdminNavbar />
+    <div class="conta iner py-5">
+      <AdminCafeForm 
+        v-if="!isLoading"
+        :initial-cafe="cafe"
+        :initial-images="images"
+        @after-submit="handleAfterSubmit" />
+    </div>
   </div>
 </template>
 
 <script>
 import AdminAPI from '../../apis/admin.js'
 import AdminCafeForm from '../../components/admin/AdminCafeForm.vue'
+import AdminNavbar from '../../components/admin/AdminNavbar.vue'
 import {Toast} from '../../utils/helpers.js'
 
 export default {
   components: {
-    AdminCafeForm
+    AdminCafeForm,
+    AdminNavbar
   },
   data() {
     return {

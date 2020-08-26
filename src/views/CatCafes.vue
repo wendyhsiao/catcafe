@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Navbar/>
   <div class="container py-5">
     <Spinner v-if="isLoading"/>
     <div class="row" v-else>
@@ -9,9 +11,11 @@
       <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler"></infinite-loading>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue'
 import CafeCard from '../components/CafeCard.vue'
 import cafesAPI from '../apis/cafes.js'
 import InfiniteLoading from 'vue-infinite-loading'
@@ -19,6 +23,7 @@ import Spinner from '../components/Spinner.vue'
 
 export default {
   components: {
+    Navbar,
     CafeCard,
     InfiniteLoading,
     Spinner

@@ -1,18 +1,23 @@
 <template>
-  <div class="container py-5">
-    <AdminCafeForm 
-      @after-submit="handleAfterSubmit"/>
+  <div>
+    <AdminNavbar/>
+    <div class="container py-5">
+      <AdminCafeForm 
+        @after-submit="handleAfterSubmit"/>
+    </div>
   </div>
 </template>
 
 <script>
+import AdminNavbar from '../../components/admin/AdminNavbar.vue'
 import AdminCafeForm from '../../components/admin/AdminCafeForm.vue'
 import AdminAPI from '../../apis/admin.js'
 import {Toast} from '../../utils/helpers.js'
 
 export default {
   components: {
-    AdminCafeForm
+    AdminCafeForm,
+    AdminNavbar
   },
   methods: {
     async handleAfterSubmit(formData) {

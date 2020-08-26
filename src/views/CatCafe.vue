@@ -1,47 +1,51 @@
 <template>
-  <div class="container py-5">
-    <Spinner v-if="isLoading"/>
-    <div v-else>
-      <div class="card mb-3">
-        <div class="row no-gutters">
-          <div class="col-md-7 py-3 px-5">
-            <VueSlickCarousel
-              class="mainImage mb-3"
-              ref="c1"
-              :asNavFor="$refs.c2"
-              v-bind="settings"
-              >
-              <img 
-                v-for="(image, index) in images"
-                :key="index"
-                :src="image.url">
-            </VueSlickCarousel>
-
-            <VueSlickCarousel
-              class="thumbnails"
-              ref="c2"
-              :asNavFor="$refs.c1"
-              v-bind="settings2"
-              >
-              <img 
-                v-for="(image, index) in images"
-                :key="index"
-                :src="image.url"
+  <div>
+    <Navbar/>
+    <div class="container py-5">
+      <Spinner v-if="isLoading"/>
+      <div v-else>
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-7 py-3 px-5">
+              <VueSlickCarousel
+                class="mainImage mb-3"
+                ref="c1"
+                :asNavFor="$refs.c2"
+                v-bind="settings"
                 >
-            </VueSlickCarousel>
-          </div>
+                <img 
+                  v-for="(image, index) in images"
+                  :key="index"
+                  :src="image.url">
+              </VueSlickCarousel>
 
-          <div class="col-md-5 p-3">
-            <CafeDetail :cafe="cafe"/>
+              <VueSlickCarousel
+                class="thumbnails"
+                ref="c2"
+                :asNavFor="$refs.c1"
+                v-bind="settings2"
+                >
+                <img 
+                  v-for="(image, index) in images"
+                  :key="index"
+                  :src="image.url"
+                  >
+              </VueSlickCarousel>
+            </div>
+
+            <div class="col-md-5 p-3">
+              <CafeDetail :cafe="cafe"/>
+            </div>
           </div>
-        </div>
-      </div>  
-      <CafeRule :cafe="cafe"/>
+        </div>  
+        <CafeRule :cafe="cafe"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue'
 import CafeDetail from '../components/CafeDetail.vue'
 import CafeRule from '../components/CafeRule.vue'
 import cafesAPI from '../apis/cafes.js'
@@ -53,6 +57,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
   components: {
+    Navbar,
     CafeDetail,
     CafeRule,
     VueSlickCarousel,
