@@ -11,7 +11,8 @@ export default new Vuex.Store({
       name: '',
       email: '',
     },
-    isAuthenticated: false
+    isAuthenticated: false,
+    token: ''
   },
   mutations: {
     setCurrentUser(state, currentUser) {
@@ -20,10 +21,12 @@ export default new Vuex.Store({
         ...currentUser
       },
       state.isAuthenticated = true
+      state.token = localStorage.getItem('token')
     },
     revokeAuthentication(state) {
       state.currentUser = {}
       state.isAuthenticated = false
+      state.token = ''
       localStorage.removeItem('token')
     }
   },
@@ -32,8 +35,11 @@ export default new Vuex.Store({
       try {
         const {data} = await adminAPI.getCurrentUser()
         commit('setCurrentUser', data)
+        return true
       } catch (error) {
         console.log('error', error)
+        commit('revokeAuthentication')
+        return false
       }
     }
   },

@@ -55,8 +55,26 @@ const router = new VueRouter({
   }
 })
 
-router.beforeEach((to, from, next) => {
-  store.dispatch('fetchCurrentUser')
+router.beforeEach(async (to, from, next) => {
+  const token = localStorage.getItem('token')
+  const tokenInStore = store.state.token
+  let isAuth = store.state.isAuthenticated
+
+  if (token && token !== tokenInStore) {
+    isAuth = await store.dispatch('fetchCurrentUser')
+  }
+
+  const pathsWithoutAuthentication = ['admin-signin', 'cat-cafes', 'cat-cafe']
+  if (!isAuth && !pathsWithoutAuthentication.includes(to.name)) {
+    next('/admin/catcafes/signin')
+    return
+  }
+
+  if (isAuth && to.name === 'admin-signin') {
+    next('/admin/catcafes')
+    return
+  }
+  
   next()
 })
 
