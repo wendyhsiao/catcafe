@@ -27,6 +27,11 @@ const routes = [
     component: () => import('../views/admin/AdminSignin.vue')
   },
   {
+    path: '/admin/catcafes/signup',
+    name: 'admin-signup',
+    component: () => import('../views/admin/AdminSignup.vue')
+  },
+  {
     path: '/admin/catcafes',
     name: 'admin-cat-cafes',
     component: () => import('../views/admin/AdminCatCafe.vue')
@@ -64,13 +69,13 @@ router.beforeEach(async (to, from, next) => {
     isAuth = await store.dispatch('fetchCurrentUser')
   }
 
-  const pathsWithoutAuthentication = ['admin-signin', 'cat-cafes', 'cat-cafe']
+  const pathsWithoutAuthentication = ['admin-signin', 'admin-signup', 'cat-cafes', 'cat-cafe']
   if (!isAuth && !pathsWithoutAuthentication.includes(to.name)) {
     next('/admin/catcafes/signin')
     return
   }
 
-  if (isAuth && to.name === 'admin-signin') {
+  if (isAuth && to.name === ('admin-signin' || 'admin-signup')) {
     next('/admin/catcafes')
     return
   }
