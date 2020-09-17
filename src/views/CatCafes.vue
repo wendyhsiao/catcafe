@@ -34,7 +34,8 @@ export default {
       page: 1,
       search: '',
       isLoading: true,
-      infiniteId: +new Date()
+      infiniteId: +new Date(),
+      isFirstLoad: true
     }
   },
   created() {
@@ -58,7 +59,11 @@ export default {
         if (data.cafes.rows.length) {
           this.page += 1
           this.cafes.push(...data.cafes.rows)
-          $state.loaded()
+
+          if (!this.isFirstLoad) {
+            $state.loaded()
+          }
+          this.isFirstLoad = false
         } else {
           $state.complete()
         }
