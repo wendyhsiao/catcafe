@@ -1,11 +1,14 @@
 <template>
-  <div class="container py-5">
-    <Spinner v-if="isLoading"/>
-    <div v-else>
-      <AdminCafeList :cafes="cafes"/>
-      <AdminCafePagination 
-        :pagination="pagination"
-        :current-page="currentPage"/>
+  <div>
+    <AdminNavbar />
+    <div class="container py-5">
+      <Spinner v-if="isLoading"/>
+      <div v-else>
+        <AdminCafeList :cafes="cafes"/>
+        <AdminCafePagination 
+          :pagination="pagination"
+          :current-page="currentPage"/>
+      </div>
     </div>
   </div>
 </template>
@@ -13,6 +16,7 @@
 <script>
 import AdminCafeList from '../../components/admin/AdminCafeList.vue'
 import AdminCafePagination from '../../components/admin/AdminCafePagination.vue'
+import AdminNavbar from '../../components/admin/AdminNavbar.vue'
 import AdminAPI from '../../apis/admin.js'
 import Spinner from '../../components/Spinner.vue'
 
@@ -20,7 +24,8 @@ export default {
   components: {
     AdminCafeList,
     AdminCafePagination,
-    Spinner
+    Spinner,
+    AdminNavbar
   },
   data() {
     return {
