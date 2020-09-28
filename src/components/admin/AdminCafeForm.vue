@@ -132,36 +132,46 @@
             <div 
               v-for="image in images"
               :key="image.id"
-              class="col-sm-3 mb-3 image-group">
-              <button 
-                @click.prevent.stop="deteleImage(image.id)"
-                class="btn btn-danger btn-sm"
-                type="button">Delete</button>
-              <img :src="image.url" class="w-100 border rounded">
-              <input type="text" name="imageId" :value="image.id" class="d-none">
+              class="col-6 col-sm-3 mb-3">
+              <div class="image-group border rounded">
+                <img :src="image.url">
+                <button 
+                  @click.prevent.stop="deteleImage(image.id)"
+                  class="btn btn-danger btn-sm"
+                  type="button">Delete</button>
+                <input type="text" name="imageId" :value="image.id" class="d-none">
+              </div>
             </div>
+            
             <!-- 新增的照片 -->
             <div 
               v-for="(img, index) in preview_list"
               :key="'a' + index" 
-              class="col-sm-3 mb-3">
-              <button 
-                @click.prevent.stop="detelePreviewImage(index)"
-                class="btn btn-danger btn-sm"
-                type="button">Delete</button>
-              <img :src="img.imageURL" class="w-100 border rounded">
+              class="col-6 col-sm-3 mb-3">
+              <div class="image-group border rounded">
+                <img :src="img.imageURL">
+                <button 
+                  @click.prevent.stop="detelePreviewImage(index)"
+                  class="btn btn-danger btn-sm"
+                  type="button">Delete</button>
+              </div>
             </div>
+            
             <!-- 新增按鈕 -->
-            <div class="col-sm-3 mb-3 image-upload">
-              <label for="fileInput" class="w-100 border rounded text-center">+ Add Image</label>
-              <input 
-                id="fileInput"
-                type="file" 
-                name="image"
-                accept="image/*"
-                multiple="multiple"
-                ref="imageUploader"
-                @change="previewMultiImage">
+            <div class="col-6 col-sm-3 mb-3">
+              <div class="image-upload border rounded ">
+                <label for="fileInput">
+                  <span>+ Add Image</span>
+                </label>
+                <input 
+                  id="fileInput"
+                  type="file" 
+                  name="image"
+                  accept="image/*"
+                  multiple="multiple"
+                  ref="imageUploader"
+                  @change="previewMultiImage">
+              </div>
             </div>
           </div>
         </div>
@@ -271,13 +281,20 @@ export default {
 </script>
 
 <style scoped>
-.image-upload {
+.image-upload, .image-group {
+   width: 100%;
+  height: 0;
+  padding-bottom: 75%;
   position: relative;
 }
 .image-upload > label{
   cursor: pointer;
-  height: 120px;
-  line-height: 120px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
 .image-upload > input{
   display: none;
@@ -286,22 +303,20 @@ export default {
   left: 0;
 }
 .image-group {
-  position: relative;
-  height: 120px;
-  width: auto;
+  background: lightgray;
 }
 .image-group > button {
   position: absolute;
   top: 0;
-  right: 15px;
+  right: 0;
 }
 .image-group > img {
-  width: auto;
-	height: auto;
-	max-width: 100%;
+  max-width: 100%;
 	max-height: 100%;
-  object-fit: contain;
-  background: lightgray;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
 }
 .col-form-label > span {
   color: red;
