@@ -7,17 +7,25 @@
         <div class="card mb-3">
           <div class="row no-gutters">
             <div class="col-md-7 py-3 px-5">
-              <VueSlickCarousel
-                class="mainImage mb-3"
-                ref="c1"
-                :asNavFor="$refs.c2"
-                v-bind="settings"
-                >
-                <img 
-                  v-for="(image, index) in images"
-                  :key="index"
-                  :src="image.url">
-              </VueSlickCarousel>
+              <div class="gallery">
+                <VueSlickCarousel
+                  class="mainImage mb-3"
+                  ref="c1"
+                  :asNavFor="$refs.c2"
+                  v-bind="settings"
+                  >
+                    <img v-for="(image, index) in images"
+                    :key="index" 
+                    :src="image.url">
+                </VueSlickCarousel>
+                
+                <div class="gallery-prevArrow"
+                  @click="syncPrevSliders"
+                  ></div>
+                <div class="gallery-nextArrow"
+                  @click="syncNextSliders"
+                  ></div>
+              </div>
 
               <VueSlickCarousel
                 class="thumbnails"
@@ -29,6 +37,7 @@
                   v-for="(image, index) in images"
                   :key="index"
                   :src="image.url"
+                  @click="showSelect(index)"
                   >
               </VueSlickCarousel>
             </div>
@@ -84,22 +93,17 @@ export default {
       images: [],
       settings: {
         dots: false,
-        dotsClass: "slick-dots custom-dot-class",
-        edgeFriction: 0.35,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1,
       },
       settings2: {
         dots: false,
         focusOnSelect: true,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 5,
-        slidesToScroll: 5,
-        touchThreshold: 5,
-        arrows: false
+        arrows: false,
       },
       isLoading: true
     }
@@ -125,12 +129,45 @@ export default {
         this.isLoading = false
         console.log('error', error)
       }
+    },
+    showSelect(slide) {
+      this.$refs.c1.goTo(slide)
+    },
+    syncPrevSliders() {
+      this.$refs.c1.prev()
+      this.$refs.c2.prev()
+    },
+    syncNextSliders() {
+      this.$refs.c1.next()
+      this.$refs.c2.next()
     }
   }
 }
 </script>
 
 <style >
+.gallery {
+  position: relative;
+}
+.gallery-nextArrow {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  right: -25px;
+  top: 0;
+}
+.gallery-prevArrow {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  left: -25px;
+  top: 0;
+}
+.mainImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .mainImage img {
   width: 100%;
   max-height: 300px;
