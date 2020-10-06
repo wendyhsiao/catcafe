@@ -170,6 +170,7 @@ export default {
 }
 .mainImage img {
   width: 100%;
+  height: 300px;
   max-height: 300px;
   object-fit: contain;
   background: #F7F5F3;
@@ -177,7 +178,16 @@ export default {
 .thumbnails img {
   height: 80px;
   object-fit: cover;
-  padding: 0 5px;
+}
+.thumbnails .slick-slide {
+  padding: 3px;
+  filter: brightness(.6);
+  -webkit-filter:brightness(.6);
+}
+.thumbnails .slick-current {
+  border: 1px solid #564739;
+  filter: brightness(1);
+  -webkit-filter:brightness(1);
 }
 .slick-prev:before,
 .slick-next:before {
