@@ -9,8 +9,12 @@
   outline: none;
 }
 
-a:hover{
+a{
   color: #564739;
+}
+
+a:hover{
+  color: #3e3328;
 }
 
 a:hover .card-img-top>img{
@@ -21,10 +25,17 @@ body, .bg-brown{
   background-color: #F7F5F3;
 }
 
-.btn-search{
+.btn-search, .btn-primary{
   color: #fff;
   background-color: #564739;
   border: 1px solid #564739;
+}
+
+.btn-search:hover, .btn-search:active, .btn-search:focus,
+.btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:focus{
+  color: #fff;
+  background-color: #3e3328;
+  border: 1px solid #3e3328;
 }
 
 .card{
